@@ -6,6 +6,7 @@ import { getProjectRelativePaths } from "../src/Core/SolutionParser.ts";
 import path from "node:path";
 import { buildWorkspaceFromFolders, saveWorkspace } from "../src/Core/WorkspaceBuilder.ts";
 import { openCodeWithWorkspace } from "../src/Core/ProcessControl.ts";
+import { resolve } from "node:path";
 
 // Setup
 setBaseDir(import.meta.dirname);
@@ -17,7 +18,7 @@ async function runAsync() {
 
   await parseArgs();
 
-  const slnRoot = path.dirname(args.slnPath);
+  const slnRoot = resolve(path.dirname(args.slnPath));
   const slnName = path.basename(args.slnPath, ".sln");
 
   const slnProjectPaths = await getProjectRelativePaths(args.slnPath);

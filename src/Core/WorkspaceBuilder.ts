@@ -11,7 +11,7 @@ export function buildWorkspaceFromFolders(name: string, slnRoot: string, folderP
   };
 
   for(const folderPath of folderPaths) {
-    workspace.folders.push({ path: folderPath })
+    workspace.folders.push({ path: path.join(slnRoot, folderPath) })
   };
 
   return workspace

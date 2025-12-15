@@ -13,9 +13,13 @@ export async function getProjectRelativePaths(slnPath: string): Promise<string[]
 
   const projectPaths: string[] = [];
   for(const line of projectLines) {
-    const rightSide = line.split('"');
-    const projPath = rightSide[5];
+    // Right side of =
+    const rightSide: string = line.split("=")[1];
+    const rightSideArray: string[] = rightSide.split(", ");
+    const projPath = rightSideArray[1].replaceAll('"', "");
 
+    // remove duds
+    if(path.extname(projPath) !== ".csproj") continue;
     projectPaths.push(path.join(slnRoot, path.dirname(projPath)));
   }
 
