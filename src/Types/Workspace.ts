@@ -1,4 +1,6 @@
 export type Workspace = {
-  folders: [string],
-
+  name: string | null,
+  slnRoot: string | null,
+  folders: { path: string } [],
+  settings: object
 }
