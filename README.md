@@ -1,3 +1,4 @@
+```
 #DOTNET-CODE
 
 #Idea
@@ -12,3 +13,4 @@ after installation simply run
 `dotnet-code {pathtoyoursolution}`
 
 If you want to change the name of the cli tool simply go into `deno.json` and change the value of `--name` flag
+```
