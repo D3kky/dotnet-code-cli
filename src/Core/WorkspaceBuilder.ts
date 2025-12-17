@@ -2,17 +2,22 @@ import { Workspace } from "../Types/Workspace.ts";
 import { omnisharpSettings, VSCodeConsts } from "../Constants/VSCodeConsts.ts";
 import path from "node:path";
 
-export function buildWorkspaceFromFolders(name: string, slnRoot: string, folderPaths: string[]): Workspace {
+export function buildWorkspaceFromFolders(name: string, slnRootFolder: string, folderPaths: string[]): Workspace {
+  const cwdPath = path.dirname(slnRootFolder);
+
   const workspace: Workspace = {
     name,
-    slnRoot,
+    slnRoot: slnRootFolder,
     folders: [],
     settings: omnisharpSettings
   };
 
   for(const folderPath of folderPaths) {
-    workspace.folders.push({ path: path.join(slnRoot, folderPath) })
+    workspace.folders.push({ path: path.join(slnRootFolder, folderPath) })
   };
+
+  omnisharpSettings["terminal.integrated.cwd"] = cwdPath;
+  omnisharpSettings["dotnet.defaultSolution"] = path.join(slnRootFolder, `${workspace.name}.sln`);
 
   return workspace
 }
