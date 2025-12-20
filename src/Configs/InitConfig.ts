@@ -13,6 +13,6 @@ export async function setUpInitStruct() {
   }
 
   for(const value of Object.values(folderRoots)) {
-    await createIfNotExists(path.join(VSCodeConsts.root, value));
+    await createIfNotExists(value);
   }
 };
