@@ -1,3 +1,6 @@
+import path from "node:path";
+import { VSCodeConsts } from "../Constants/VSCodeConsts.ts";
+
 export async function fileExists(filePath: string): Promise<boolean> {
   try {
     await Deno.stat(filePath);
@@ -13,6 +16,12 @@ export async function getFileText(filePath: string): Promise<string> {
   return await Deno.readTextFile(filePath);
 }
 
-export async function saveFileText(filePath: string, fileText: string) {
+export async function saveFileText(filePath: string, fileText: string): Promise<void> {
   await Deno.writeTextFile(filePath, fileText);
+}
+
+export async function existsSolutionWorkspace(slnPath: string): Promise<string | null> {
+  const workspacePath = path.join(VSCodeConsts.workspaceRoot, `${path.basename(slnPath, ".sln")}${VSCodeConsts.workspaceExtension}`);
+  
+  return await fileExists(workspacePath) ? workspacePath : null;
 }

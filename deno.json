@@ -3,8 +3,5 @@
     "dev": "deno run --watch main.ts",
     "start": "deno run --allow-read --allow-write --allow-env --allow-run ./bin/main.ts",
     "install-cli": "deno install -g --name dotnet-code --allow-read --allow-write --allow-env --allow-run ./bin/main.ts -f"
-  },
-  "imports": {
-    "@std/assert": "jsr:@std/assert@1"
   }
 }

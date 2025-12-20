@@ -1,4 +1,3 @@
-import path from "node:path";
 import { VSCodeConsts } from "../Constants/VSCodeConsts.ts";
 import { fileExists } from "../Utils/FileUtil.ts";
 

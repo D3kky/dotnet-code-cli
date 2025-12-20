@@ -1,20 +1,22 @@
-import path, { resolve } from "node:path";
+import path from "node:path";
 import { fileExists } from "./FileUtil.ts";
+// deno-lint-ignore no-import-prefix
+import { parseArgs } from "jsr:@std/cli@1.0.24/parse-args";
 
-export const args = {
-  slnPathAbs: ""
-}
+export const flags = parseArgs(Deno.args, {
+  boolean: ["forceReload"],
+  string: ["sln"],
+  alias: { f: "forceReload" },
+  default: { forceReload: false }
+});
 
-export async function parseArgs(): Promise<string> {
-  if(Deno.args.length === 0) throw new Error("At least one argument must be provided")
-  if(Deno.args.length === 1) await handleSolutionArg(Deno.args[0]);
+export async function handleArgs(): Promise<string> {
+  await handleSolutionArg(flags.sln ?? Deno.args[0]);
 
-  return args.slnPathAbs;
+  return flags.sln ?? Deno.args[0]  
 }
 
 async function handleSolutionArg(solutionPath: string) {
   if(! await fileExists(solutionPath)) throw new Error("The path you provided doesnt exit");
   if(path.extname(solutionPath) !== ".sln") throw new Error("File must be of type .sln");
-
-  args.slnPathAbs = resolve(Deno.cwd(), solutionPath)
-} 
+}
