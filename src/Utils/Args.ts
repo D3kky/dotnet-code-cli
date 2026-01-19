@@ -13,10 +13,10 @@ export const flags = parseArgs(Deno.args, {
 export async function handleArgs(): Promise<string> {
   await handleSolutionArg(flags.sln ?? Deno.args[0]);
 
-  return flags.sln ?? Deno.args[0]  
+  return flags.sln ?? Deno.args[0]
 }
 
 async function handleSolutionArg(solutionPath: string) {
-  if(! await fileExists(solutionPath)) throw new Error("The path you provided doesnt exit");
-  if(path.extname(solutionPath) !== ".sln") throw new Error("File must be of type .sln");
+  if (! await fileExists(solutionPath)) throw new Error("The path you provided doesnt exit");
+  if (path.extname(solutionPath) !== ".sln") throw new Error("File must be of type .sln");
 }

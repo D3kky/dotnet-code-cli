@@ -1,2 +1,3 @@
 bin/*
 !bin/main.ts
+node_modules

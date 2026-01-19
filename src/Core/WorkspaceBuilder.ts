@@ -3,7 +3,7 @@ import { omnisharpSettings, VSCodeConsts } from "../Constants/VSCodeConsts.ts";
 import path from "node:path";
 
 export function buildWorkspaceFromFolders(name: string, slnRootFile: string, folderPaths: string[]): Workspace {
-  const cwdPath = path.dirname(slnRootFile);
+  const cwdPath = Deno.realPathSync(path.dirname(slnRootFile));
 
   const workspace: Workspace = {
     name,
@@ -17,7 +17,7 @@ export function buildWorkspaceFromFolders(name: string, slnRootFile: string, fol
   };
 
   omnisharpSettings["terminal.integrated.cwd"] = cwdPath;
-  omnisharpSettings["dotnet.defaultSolution"] = path.join(slnRootFile);
+  omnisharpSettings["dotnet.defaultSolution"] = Deno.realPathSync(slnRootFile);
 
   return workspace
 }

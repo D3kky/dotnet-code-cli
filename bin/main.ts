@@ -15,13 +15,13 @@ async function runAsync() {
   const slnAbsPath: string = await handleArgs();
   let workspacePath = await existsSolutionWorkspace(slnAbsPath)
 
-  if(workspacePath != null && flags.forceReload) {
+  if (true) {
     console.log("Generating workspace")
     const slnProjectPaths = await getProjectRelativePaths(slnAbsPath);
     const slnName: string = path.basename(slnAbsPath, ".sln")
     workspacePath = await saveWorkspace(await buildWorkspaceFromFolders(slnName, slnAbsPath, slnProjectPaths));
   }
-  
+
   openCodeWithWorkspace(workspacePath!);
 }
 

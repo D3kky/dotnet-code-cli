@@ -20,7 +20,8 @@ export async function getProjectRelativePaths(slnPath: string): Promise<string[]
 
     // remove duds
     if(path.extname(projPath) !== ".csproj") continue;
-    projectPaths.push(path.join(slnRoot, path.dirname(projPath)));
+
+    projectPaths.push(Deno.realPathSync(path.join(slnRoot, path.dirname(projPath))));
   }
 
   return projectPaths;
