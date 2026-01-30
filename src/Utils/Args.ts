@@ -18,5 +18,5 @@ export async function handleArgs(): Promise<string> {
 
 async function handleSolutionArg(solutionPath: string) {
   if (! await fileExists(solutionPath)) throw new Error("The path you provided doesnt exit");
-  if (path.extname(solutionPath) !== ".sln") throw new Error("File must be of type .sln");
+  if (path.extname(solutionPath) !== ".sln" || ".slnx") throw new Error("File must be of type .sln");
 }
