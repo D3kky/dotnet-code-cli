@@ -20,8 +20,8 @@ export async function saveFileText(filePath: string, fileText: string): Promise<
   await Deno.writeTextFile(filePath, fileText);
 }
 
-export async function existsSolutionWorkspace(slnPath: string): Promise<string | null> {
-  const workspacePath = path.join(VSCodeConsts.workspaceRoot, `${path.basename(slnPath, ".sln")}${VSCodeConsts.workspaceExtension}`);
+export async function existsSolutionWorkspace(slnPath: string, slnExt: string): Promise<string | null> {
+  const workspacePath = path.join(VSCodeConsts.workspaceRoot, `${path.basename(slnPath, slnExt)}${VSCodeConsts.workspaceExtension}`);
   
   return await fileExists(workspacePath) ? workspacePath : null;
 }
