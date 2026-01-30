@@ -9,6 +9,7 @@ export const VSCodeConsts = {
 }
 
 export const omnisharpSettings: Record<string, unknown> = {
+  "omnisharp.useModernNet": true,
   "omnisharp.useGlobalMono": "always",
   "omnisharp.path": "latest",
   "omnisharp.workspaceLoadOnStartup": true

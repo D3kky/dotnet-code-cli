@@ -1,10 +1,7 @@
 import * as InitConfig from "../src/Configs/InitConfig.ts";
 import { handleArgs } from "../src/Utils/Args.ts";
 import { getProjectRelativePaths } from "../src/Core/SolutionParser.ts";
-import {
-  buildWorkspaceFromFolders,
-  saveWorkspace,
-} from "../src/Core/WorkspaceBuilder.ts";
+import { buildWorkspaceFromFolders, saveWorkspace } from "../src/Core/WorkspaceBuilder.ts";
 import { openCodeWithWorkspace } from "../src/Core/ProcessControl.ts";
 import path from "node:path";
 import { existsSolutionWorkspace } from "../src/Utils/FileUtil.ts";
