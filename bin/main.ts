@@ -1,5 +1,5 @@
 import * as InitConfig from "../src/Configs/InitConfig.ts";
-import { flags, handleArgs } from "../src/Utils/Args.ts";
+import { handleArgs } from "../src/Utils/Args.ts";
 import { getProjectRelativePaths } from "../src/Core/SolutionParser.ts";
 import {
   buildWorkspaceFromFolders,
@@ -10,7 +10,7 @@ import path from "node:path";
 import { existsSolutionWorkspace } from "../src/Utils/FileUtil.ts";
 
 // Setup
-const validExtValues: Set<string> = new Set(["sln", "slnx"]);
+const validExtValues: Set<string> = new Set([".sln", ".slnx"]);
 
 async function runAsync() {
   // IMPORTANT! ALWAYS CONFIG ROOT FIRST

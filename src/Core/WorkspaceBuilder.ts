@@ -4,6 +4,7 @@ import path from "node:path";
 
 export function buildWorkspaceFromFolders(name: string, slnRootFile: string, folderPaths: string[]): Workspace {
   const cwdPath = Deno.realPathSync(path.dirname(slnRootFile));
+  console.log(cwdPath);
 
   const workspace: Workspace = {
     name,
